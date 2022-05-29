@@ -1,0 +1,734 @@
+module LookUp_Taple(IN,OUT,clk);
+  
+  input clk;
+  input [31:0]IN;
+  output reg  [31:0]OUT;
+   reg [31:0] MEM[255:0];
+  
+  always @(posedge clk)
+    begin
+      
+      MEM[0]=32'h00000000;		MEM[1]=32'h814141AB;
+      MEM[2]=32'h83C3C2FD;		MEM[3]=32'h02828356; 
+      MEM[4]=32'h86C6C451;		MEM[5]=32'h078785FA; 
+      MEM[6]=32'h050506AC;		MEM[7]=32'h84444707;  
+      MEM[8]=32'h8CCCC909;		MEM[9]=32'h0D8D88A2;  
+      MEM[10]=32'h0F0F0BF4;		MEM[11]=32'h8E4E4A5F; 
+      MEM[12]=32'h0A0A0D58;		MEM[13]=32'h8B4B4CF3; 
+      MEM[14]=32'h89C9CFA5;		MEM[15]=32'h08888E0E;
+
+      MEM[16]=32'h98D8D3B9;		MEM[17]=32'h19999212;
+      MEM[18]=32'h1B1B1144;		MEM[19]=32'h9A5A50EF; 
+      MEM[20]=32'h1E1E17E8;		MEM[21]=32'h1E1E17E8; 
+      MEM[22]=32'h9DDDD515;		MEM[23]=32'h1C9C94BE;  
+      MEM[24]=32'h14141AB0;		MEM[25]=32'h95555B1B;  
+      MEM[26]=32'h97D7D84D;		MEM[27]=32'h169699E6; 
+      MEM[28]=32'h92D2DEE1;		MEM[29]=32'h13939F4A; 
+      MEM[30]=32'h11111C1C;		MEM[31]=32'h90505DB7;
+
+      MEM[32]=32'hB0F0E6D9;		MEM[33]=32'h31B1A772;
+      MEM[34]=32'h33332424;		MEM[35]=32'hB272658F; 
+      MEM[36]=32'h36362288;		MEM[37]=32'hB7776323;	 
+      MEM[38]=32'hB5F5E075;		MEM[39]=32'h34B4A1DE;	  
+      MEM[40]=32'h3C3C2FD0;		MEM[41]=32'hBD7D6E7B;	  
+      MEM[42]=32'hBFFFED2D;		MEM[43]=32'h3EBEAC86;	 
+      MEM[44]=32'hBAFAEB81;		MEM[45]=32'h3BBBAA2A;	 
+      MEM[46]=32'h3939297C;		MEM[47]=32'hB87868D7;	
+
+      MEM[48]=32'h28283560;		MEM[49]=32'hA96974CB;
+      MEM[50]=32'hABEBF79D;		MEM[51]=32'h2AAAB636; 
+      MEM[52]=32'hAEEEF131;		MEM[53]=32'h2FAFB09A;	 
+      MEM[54]=32'h2D2D33CC;		MEM[55]=32'hAC6C7267;	  
+      MEM[56]=32'hA4E4FC69;		MEM[57]=32'h25A5BDC2;	  
+      MEM[58]=32'h27273E94;		MEM[59]=32'hA6667F3F;	 
+      MEM[60]=32'h22223838;		MEM[61]=32'hA3637993;	 
+      MEM[62]=32'hA1E1FAC5;		MEM[63]=32'h20A0BB6E;	
+
+      MEM[64]=32'hE0A08C19;		MEM[65]=32'h61E1CDB2;	
+      MEM[66]=32'h63634EE4;		MEM[67]=32'hE2220F4F;	 
+      MEM[68]=32'h66664848;		MEM[69]=32'hE72709E3;	 
+      MEM[70]=32'hE5A58AB5;		MEM[71]=32'h64E4CB1E;
+      MEM[72]=32'h6C6C4510;		MEM[73]=32'hED2D04BB;	  
+      MEM[74]=32'hEFAF87ED;		MEM[75]=32'h6EEEC646;	 
+      MEM[76]=32'hEAAA8141;		MEM[77]=32'h6BEBC0EA;	 
+      MEM[78]=32'h696943BC;		MEM[79]=32'hE8280217;	
+
+      MEM[80]=32'h78785FA0;		MEM[81]=32'hF9391E0B;
+      MEM[82]=32'hFBBB9D5D;		MEM[83]=32'h7AFADCF6; 
+      MEM[84]=32'hFEBE9BF1;		MEM[85]=32'h7FFFDA5A; 
+      MEM[86]=32'h7D7D590C;		MEM[87]=32'hFC3C18A7;
+      MEM[88]=32'hF4B496A9;		MEM[89]=32'h75F5D702;
+      MEM[90]=32'h77775454;		MEM[91]=32'hF63615FF;
+      MEM[92]=32'h727252F8;		MEM[93]=32'hF3331353;
+      MEM[94]=32'hF1B19005;		MEM[95]=32'h70F0D1AE;
+      
+      MEM[96]=32'h50506AC0;		MEM[97]=32'hD1112B6B;
+      MEM[98]=32'hD393A83D;		MEM[99]=32'h52D2E996;
+      MEM[100]=32'hD696AE91;	MEM[101]=32'h57D7EF3A;
+      MEM[102]=32'h55556C6C;	MEM[103]=32'hD4142DC7;
+      MEM[104]=32'hDC9CA3C9;	MEM[105]=32'h5DDDE262;
+      MEM[106]=32'h5F5F6134;	MEM[107]=32'hDE1E209F;
+      MEM[108]=32'h5A5A6798;	MEM[109]=32'hDB1B2633;
+      MEM[110]=32'hD999A565;	MEM[111]=32'h58D8E4CE;
+      
+      MEM[112]=32'hC888B979;	MEM[113]=32'h49C9F8D2;
+      MEM[114]=32'h4B4B7B84;	MEM[115]=32'hCA0A3A2F;
+      MEM[116]=32'h4E4E7D28;	MEM[117]=32'hCF0F3C83;
+      MEM[118]=32'hCD8DBFD5;	MEM[119]=32'h4CCCFE7E;
+      MEM[120]=32'h44447070;	MEM[121]=32'hC50531DB;
+      MEM[122]=32'hC787B28D;	MEM[123]=32'h46C6F326;
+      MEM[124]=32'hC282B421;	MEM[125]=32'h43C3F58A;
+      
+      MEM[126]=32'h414176DC;	MEM[127]=32'hC0003777;
+      MEM[128]=32'h40005999;	MEM[129]=32'hC1411832;
+      MEM[130]=32'hC3C39B64;	MEM[131]=32'h4282DACF;
+      MEM[132]=32'hC6C69DC8;	MEM[133]=32'h4787DC63;
+      MEM[134]=32'h45055F35;	MEM[135]=32'hC4441E9E;
+      MEM[136]=32'hCCCC9090;	MEM[137]=32'h4D8DD13B;
+      MEM[138]=32'h4F0F526D;	MEM[139]=32'hCE4E13C6;
+      MEM[140]=32'h4A0A54C1;	MEM[141]=32'hCB4B156A;
+      
+      MEM[142]=32'hC9C9963C;	MEM[143]=32'h4888D797;
+      MEM[144]=32'hD8D88A20;	MEM[145]=32'h5999CB8B;
+      MEM[146]=32'h5B1B48DD;	MEM[147]=32'hDA5A0976;
+      MEM[148]=32'h5E1E4E71;	MEM[149]=32'hDF5F0FDA;
+      MEM[150]=32'hDDDD8C8C;	MEM[151]=32'h5C9CCD27;
+      MEM[152]=32'h54144329;	MEM[153]=32'hD5550282;
+      MEM[154]=32'hD7D781D4;	MEM[155]=32'h5696C07F;
+      
+      MEM[156]=32'hD2D28778;	MEM[157]=32'h5393C6D3;
+      MEM[158]=32'h51114585;	MEM[159]=32'hD050042E;
+      MEM[160]=32'hF0F0BF40;	MEM[161]=32'h71B1FEEB;
+      MEM[162]=32'h73337DBD;	MEM[163]=32'hF2723C16;
+      MEM[164]=32'h76367B11;	MEM[165]=32'hF7773ABA;
+      MEM[166]=32'hF5F5B9EC;	MEM[167]=32'h74B4F847;
+      MEM[168]=32'h7C3C7649;	MEM[169]=32'hFD7D37E2;
+      
+      MEM[170]=32'hFFFFB4B4;	MEM[171]=32'h7EBEF51F; 
+      MEM[172]=32'hFAFAB218;	MEM[173]=32'h7BBBF3B3; 
+      MEM[174]=32'h793970E5;	MEM[175]=32'hF878314E;
+      MEM[176]=32'h68286CF9;	MEM[177]=32'hE9692D52;
+      MEM[178]=32'hEBEBAE04;	MEM[179]=32'h6AAAEFAF; 
+      MEM[180]=32'hEEEEA8A8;	MEM[181]=32'h6FAFE903; 
+      MEM[182]=32'h6D2D6A55;	MEM[183]=32'hEC6C2BFE;  
+      MEM[184]=32'hE4E4A5F0;	MEM[185]=32'h65A5E45B; 
+      
+      MEM[186]=32'h6727670D;	MEM[187]=32'hE66626A6; 
+      MEM[188]=32'h622261A1;	MEM[189]=32'hE363200A;
+      MEM[190]=32'hE1E1A35C;	MEM[191]=32'h60A0E2F7;
+      MEM[192]=32'hA0A0D580;	MEM[193]=32'h21E1942B;
+      MEM[194]=32'h2363177D;	MEM[195]=32'hA22256D6; 
+      MEM[196]=32'h266611D1;	MEM[197]=32'hA727507A; 
+      MEM[198]=32'hA5A5D32C;	MEM[199]=32'h24E49287; 
+      
+      MEM[200]=32'h2C6C1C89;	MEM[201]=32'hAD2D5D22;  
+      MEM[202]=32'hAFAFDE74;	MEM[203]=32'h2EEE9FDF; 
+      MEM[204]=32'hAAAAD8D8;	MEM[205]=32'h2BEB9973;
+      MEM[206]=32'h29691A25;	MEM[207]=32'hA8285B8E;
+      MEM[208]=32'h38780639;	MEM[209]=32'hB9394792; 
+      MEM[210]=32'hBBBBC4C4;	MEM[211]=32'h3AFA856F;
+      MEM[212]=32'hBEBEC268;	MEM[213]=32'h3FFF83C3;
+      MEM[214]=32'h3D7D0095;	MEM[215]=32'hBC3C413E;  
+      MEM[216]=32'hB4B4CF30;	MEM[217]=32'h35F58E9B; 
+      MEM[218]=32'h37770DCD;	MEM[219]=32'hB6364C66; 
+      MEM[220]=32'h32720B61;	MEM[221]=32'hB3334ACA;
+
+      MEM[222]=32'hB1B1C99C;	MEM[223]=32'h30F08837;
+      MEM[224]=32'h10503359;	MEM[225]=32'h911172F2; 
+      MEM[226]=32'h9393F1A4;	MEM[227]=32'h12D2B00F; 
+      MEM[228]=32'h9696F708;	MEM[229]=32'h17D7B6A3;   
+      MEM[230]=32'h155535F5;	MEM[231]=32'h9414745E; 
+      MEM[232]=32'h9C9CFA50;	MEM[233]=32'h1DDDBBFB; 
+      MEM[234]=32'h1F5F38AD;	MEM[235]=32'h9E1E7906; 
+      MEM[236]=32'h1A5A3E01;	MEM[237]=32'h9B1B7FAA;
+
+      MEM[238]=32'h9999FCFC;	MEM[239]=32'h18D8BD57;
+      MEM[240]=32'h8888E0E0;	MEM[241]=32'h09C9A14B;
+      MEM[242]=32'h0B4B221D;	MEM[243]=32'h8A0A63B6; 
+      MEM[244]=32'h0E4E24B1;	MEM[245]=32'h8F0F651A;  
+      MEM[246]=32'h8D8DE64C;	MEM[247]=32'h0CCCA7E7; 
+      MEM[248]=32'h044429E9;	MEM[249]=32'h85056842; 
+      MEM[250]=32'h8787EB14;	MEM[251]=32'h06C6AABF; 
+      MEM[252]=32'h8282EDB8;	MEM[253]=32'h03C3AC13;
+      MEM[254]=32'h01412F45;	MEM[255]=32'h80006EEE; 
+      
+      OUT=MEM[IN];
+      
+        end 
+endmodule	
+//**************************************************************************************//
+module stage_1(input_bits,clk ,L1_x1 ,L1_x2 ,L1_x3 ,L1_x4,poly,poly_s1,In_s1);
+ 
+  input clk;
+  input [31:0] poly;
+  output reg [31:0] poly_s1;
+  output reg [31:0] L1_x1, L1_x2,L1_x3, L1_x4;
+  output reg [7:0]In_s1;
+  input [7:0] input_bits;
+  
+  always@(posedge clk)
+    begin 
+      
+      L1_x1<={30'b000000000000000000000000000000,input_bits[1:0]};
+      L1_x2<={28'b0000000000000000000000000000,input_bits[3:2],2'b00};
+      L1_x3<={26'b00000000000000000000000000,input_bits[5:4],4'b0000};
+       L1_x4<={input_bits[7:6],6'b000000};
+      
+       poly_s1<=poly;// forwarding 
+       In_s1<=input_bits;
+    end
+endmodule
+////**************************************************************************************////
+module stage_2( L1_x1, L1_x2,L1_x3, L1_x4,L2_x1, L2_x2,L2_x3,L2_x4,clk,poly,poly_s2,In,In_s2);
+  
+  input clk;
+  input [31:0] L1_x1, L1_x2,L1_x3, L1_x4;
+  output[31:0] L2_x2,L2_x3,L2_x4, L2_x1;
+  input [7:0] In;
+  output reg [7:0] In_s2;
+  
+  input [31:0] poly;
+  output reg [31:0] poly_s2;
+  
+  always @(posedge clk)
+    begin 
+      poly_s2<=poly;// forwarding poly
+      In_s2<=In; // forwarding In
+
+    end
+  
+  LookUp_Taple LUT1(L1_x1,L2_x1,clk);
+  LookUp_Taple LUT2(L1_x2,L2_x2,clk);
+  LookUp_Taple LUT3(L1_x3,L2_x3,clk);
+  LookUp_Taple LUT4(L1_x4,L2_x4,clk);
+
+endmodule
+//***************************************************************************************************//
+module stage_3(L2x1,L2x2,L2x3,L2x4,L3_x1,L3_x2,L3_x3,L3_x4,Clk,poly,poly_s3,In,In_s3);
+  input Clk;
+  input [31:0] L2x1, L2x2,L2x3, L2x4;
+  output reg[31:0] L3_x1, L3_x2,L3_x3,L3_x4;
+  input [31:0] poly;
+  output reg [31:0] poly_s3;
+  input [7:0] In;
+  output reg [7:0] In_s3;
+  
+  always @(posedge Clk)
+    begin 
+      L3_x1<=L2x1;
+      L3_x2<=L2x2;
+      L3_x3<=L2x3;
+      L3_x4<=L2x4;
+
+      poly_s3<=poly;// forwarding 
+      In_s3<=In; // forwarding In
+    end
+endmodule
+//***************************************************************************************************// 
+module stage_4(L3_x1,L3_x2,L3_x3,L3_x4,clk,CRC,poly,poly_s4,In,In_s4);
+  
+  input [31:0] L3_x1,L3_x2,L3_x3,L3_x4;
+  input clk;
+  output reg [31:0] CRC;
+  input [31:0] poly;
+  output reg [31:0] poly_s4;
+  input [7:0] In;
+  output reg [7:0] In_s4;
+  
+  always @(posedge clk)
+    begin 
+       CRC <=L3_x1^L3_x2^L3_x3^L3_x4;
+       poly_s4<=poly;// forwarding 
+       In_s4<=In; // forwarding In
+    end
+ 
+endmodule
+//***********************************************************************************************************************//
+module stage_5 (CRC,In,Append,clk,poly,poly_s5,In_s5); //stage 5
+  
+  input clk;
+  input [31:0]CRC;
+  input [7:0]In;
+  output reg [39:0]Append;
+  input [31:0] poly;
+  output reg [31:0] poly_s5;
+  output reg [7:0] In_s5;
+
+  always @(posedge clk)
+    begin  
+      
+      Append <= {In,CRC};
+      poly_s5<=poly; //forwarding 
+      In_s5 <= In; // forwarding 
+      
+    end
+  
+endmodule
+//******************************************************************************************************************//
+// CRC polynomial coefficients: x^32 + x^31 + x^24 + x^22 + x^16 + x^14 + x^8 + x^7 + x^5 + x^3 + x + 1
+//                              0x814141AB (hex)
+// CRC width:                   32 bits
+// CRC shift direction:         left (big endian)
+// Input word width:            40 bits
+
+`ifndef CRC_V_
+`define CRC_V_
+module Detection (Poly,Append,clk,Detected);
+  input [31:0] Poly;
+  input [39:0] Append;
+  input clk;
+  output reg [31:0] Detected;
+  
+  always @(posedge clk)
+    begin 
+    assign Detected[0] = (Poly[0] ^ Poly[2] ^ Poly[3] ^ Poly[4] ^ Poly[5] ^ Poly[6] ^ Poly[7] ^ Poly[8] ^ Poly[9] ^ Poly[11] ^ Poly[12] ^ Poly[13] ^ Poly[14] ^ Poly[15] ^ Poly[16] ^ Poly[17] ^ Poly[19] ^ Poly[20] ^ Poly[24] ^ Poly[26] ^ Poly[27] ^ Poly[29] ^ Poly[30] ^ Poly[31] ^ Append[0] ^ Append[1] ^ Append[2] ^ Append[3] ^ Append[4] ^ Append[5] ^ Append[6] ^ Append[7] ^ Append[9] ^ Append[10] ^ Append[11] ^ Append[12] ^ Append[13] ^ Append[14] ^ Append[15] ^ Append[16] ^ Append[18] ^ Append[19] ^ Append[20] ^ Append[21] ^ Append[22] ^ Append[23] ^ Append[24] ^ Append[26] ^ Append[27] ^ Append[31] ^ Append[33] ^ Append[34] ^ Append[36] ^ Append[37] ^ Append[38]);
+    assign Detected[1] = (Poly[1] ^ Poly[2] ^ Poly[10] ^ Poly[11] ^ Poly[18] ^ Poly[19] ^ Poly[21] ^ Poly[24] ^ Poly[25] ^ Poly[26] ^ Poly[28] ^ Poly[29] ^ Append[0] ^ Append[8] ^ Append[9] ^ Append[17] ^ Append[18] ^ Append[25] ^ Append[26] ^ Append[28] ^ Append[31] ^ Append[32] ^ Append[33] ^ Append[35] ^ Append[36]);
+    assign Detected[2] = (Poly[2] ^ Poly[3] ^ Poly[11] ^ Poly[12] ^ Poly[19] ^ Poly[20] ^ Poly[22] ^ Poly[25] ^ Poly[26] ^ Poly[27] ^ Poly[29] ^ Poly[30] ^ Append[1] ^ Append[9] ^ Append[10] ^ Append[18] ^ Append[19] ^ Append[26] ^ Append[27] ^ Append[29] ^ Append[32] ^ Append[33] ^ Append[34] ^ Append[36] ^ Append[37]);
+    assign Detected[3] = (Poly[0] ^ Poly[2] ^ Poly[5] ^ Poly[6] ^ Poly[7] ^ Poly[8] ^ Poly[9] ^ Poly[11] ^ Poly[14] ^ Poly[15] ^ Poly[16] ^ Poly[17] ^ Poly[19] ^ Poly[21] ^ Poly[23] ^ Poly[24] ^ Poly[28] ^ Poly[29] ^ Append[0] ^ Append[1] ^ Append[3] ^ Append[4] ^ Append[5] ^ Append[6] ^ Append[7] ^ Append[9] ^ Append[12] ^ Append[13] ^ Append[14] ^ Append[15] ^ Append[16] ^ Append[18] ^ Append[21] ^ Append[22] ^ Append[23] ^ Append[24] ^ Append[26] ^ Append[28] ^ Append[30] ^ Append[31] ^ Append[35] ^ Append[36]);
+    assign Detected[4] = (Poly[0] ^ Poly[1] ^ Poly[3] ^ Poly[6] ^ Poly[7] ^ Poly[8] ^ Poly[9] ^ Poly[10] ^ Poly[12] ^ Poly[15] ^ Poly[16] ^ Poly[17] ^ Poly[18] ^ Poly[20] ^ Poly[22] ^ Poly[24] ^ Poly[25] ^ Poly[29] ^ Poly[30] ^ Append[1] ^ Append[2] ^ Append[4] ^ Append[5] ^ Append[6] ^ Append[7] ^ Append[8] ^ Append[10] ^ Append[13] ^ Append[14] ^ Append[15] ^ Append[16] ^ Append[17] ^ Append[19] ^ Append[22] ^ Append[23] ^ Append[24] ^ Append[25] ^ Append[27] ^ Append[29] ^ Append[31] ^ Append[32] ^ Append[36] ^ Append[37]);
+    assign Detected[5] = (Poly[1] ^ Poly[3] ^ Poly[5] ^ Poly[6] ^ Poly[10] ^ Poly[12] ^ Poly[14] ^ Poly[15] ^ Poly[18] ^ Poly[20] ^ Poly[21] ^ Poly[23] ^ Poly[24] ^ Poly[25] ^ Poly[27] ^ Poly[29] ^ Append[0] ^ Append[1] ^ Append[4] ^ Append[8] ^ Append[10] ^ Append[12] ^ Append[13] ^ Append[17] ^ Append[19] ^ Append[21] ^ Append[22] ^ Append[25] ^ Append[27] ^ Append[28] ^ Append[30] ^ Append[31] ^ Append[32] ^ Append[34] ^ Append[36]);
+    assign Detected[6] = (Poly[2] ^ Poly[4] ^ Poly[6] ^ Poly[7] ^ Poly[11] ^ Poly[13] ^ Poly[15] ^ Poly[16] ^ Poly[19] ^ Poly[21] ^ Poly[22] ^ Poly[24] ^ Poly[25] ^ Poly[26] ^ Poly[28] ^ Poly[30] ^ Append[1] ^ Append[2] ^ Append[5] ^ Append[9] ^ Append[11] ^ Append[13] ^ Append[14] ^ Append[18] ^ Append[20] ^ Append[22] ^ Append[23] ^ Append[26] ^ Append[28] ^ Append[29] ^ Append[31] ^ Append[32] ^ Append[33] ^ Append[35] ^ Append[37]);
+    assign Detected[7] = (Poly[0] ^ Poly[2] ^ Poly[4] ^ Poly[6] ^ Poly[9] ^ Poly[11] ^ Poly[13] ^ Poly[15] ^ Poly[19] ^ Poly[22] ^ Poly[23] ^ Poly[24] ^ Poly[25] ^ Poly[30] ^ Append[0] ^ Append[1] ^ Append[4] ^ Append[5] ^ Append[7] ^ Append[9] ^ Append[11] ^ Append[13] ^ Append[16] ^ Append[18] ^ Append[20] ^ Append[22] ^ Append[26] ^ Append[29] ^ Append[30] ^ Append[31] ^ Append[32] ^ Append[37]);
+    assign Detected[8] = (Poly[0] ^ Poly[1] ^ Poly[2] ^ Poly[4] ^ Poly[6] ^ Poly[8] ^ Poly[9] ^ Poly[10] ^ Poly[11] ^ Poly[13] ^ Poly[15] ^ Poly[17] ^ Poly[19] ^ Poly[23] ^ Poly[25] ^ Poly[27] ^ Poly[29] ^ Poly[30] ^ Append[0] ^ Append[3] ^ Append[4] ^ Append[7] ^ Append[8] ^ Append[9] ^ Append[11] ^ Append[13] ^ Append[15] ^ Append[16] ^ Append[17] ^ Append[18] ^ Append[20] ^ Append[22] ^ Append[24] ^ Append[26] ^ Append[30] ^ Append[32] ^ Append[34] ^ Append[36] ^ Append[37]);
+    assign Detected[9] = (Poly[1] ^ Poly[2] ^ Poly[3] ^ Poly[5] ^ Poly[7] ^ Poly[9] ^ Poly[10] ^ Poly[11] ^ Poly[12] ^ Poly[14] ^ Poly[16] ^ Poly[18] ^ Poly[20] ^ Poly[24] ^ Poly[26] ^ Poly[28] ^ Poly[30] ^ Poly[31] ^ Append[1] ^ Append[4] ^ Append[5] ^ Append[8] ^ Append[9] ^ Append[10] ^ Append[12] ^ Append[14] ^ Append[16] ^ Append[17] ^ Append[18] ^ Append[19] ^ Append[21] ^ Append[23] ^ Append[25] ^ Append[27] ^ Append[31] ^ Append[33] ^ Append[35] ^ Append[37] ^ Append[38]);
+    assign Detected[10] = (Poly[2] ^ Poly[3] ^ Poly[4] ^ Poly[6] ^ Poly[8] ^ Poly[10] ^ Poly[11] ^ Poly[12] ^ Poly[13] ^ Poly[15] ^ Poly[17] ^ Poly[19] ^ Poly[21] ^ Poly[25] ^ Poly[27] ^ Poly[29] ^ Poly[31] ^ Append[2] ^ Append[5] ^ Append[6] ^ Append[9] ^ Append[10] ^ Append[11] ^ Append[13] ^ Append[15] ^ Append[17] ^ Append[18] ^ Append[19] ^ Append[20] ^ Append[22] ^ Append[24] ^ Append[26] ^ Append[28] ^ Append[32] ^ Append[34] ^ Append[36] ^ Append[38]);
+    assign Detected[11] = (Poly[0] ^ Poly[3] ^ Poly[4] ^ Poly[5] ^ Poly[7] ^ Poly[9] ^ Poly[11] ^ Poly[12] ^ Poly[13] ^ Poly[14] ^ Poly[16] ^ Poly[18] ^ Poly[20] ^ Poly[22] ^ Poly[26] ^ Poly[28] ^ Poly[30] ^ Append[3] ^ Append[6] ^ Append[7] ^ Append[10] ^ Append[11] ^ Append[12] ^ Append[14] ^ Append[16] ^ Append[18] ^ Append[19] ^ Append[20] ^ Append[21] ^ Append[23] ^ Append[25] ^ Append[27] ^ Append[29] ^ Append[33] ^ Append[35] ^ Append[37]);
+    assign Detected[12] = (Poly[0] ^ Poly[1] ^ Poly[4] ^ Poly[5] ^ Poly[6] ^ Poly[8] ^ Poly[10] ^ Poly[12] ^ Poly[13] ^ Poly[14] ^ Poly[15] ^ Poly[17] ^ Poly[19] ^ Poly[21] ^ Poly[23] ^ Poly[27] ^ Poly[29] ^ Poly[31] ^ Append[4] ^ Append[7] ^ Append[8] ^ Append[11] ^ Append[12] ^ Append[13] ^ Append[15] ^ Append[17] ^ Append[19] ^ Append[20] ^ Append[21] ^ Append[22] ^ Append[24] ^ Append[26] ^ Append[28] ^ Append[30] ^ Append[34] ^ Append[36] ^ Append[38]);
+    assign Detected[13] = (Poly[1] ^ Poly[2] ^ Poly[5] ^ Poly[6] ^ Poly[7] ^ Poly[9] ^ Poly[11] ^ Poly[13] ^ Poly[14] ^ Poly[15] ^ Poly[16] ^ Poly[18] ^ Poly[20] ^ Poly[22] ^ Poly[24] ^ Poly[28] ^ Poly[30] ^ Append[5] ^ Append[8] ^ Append[9] ^ Append[12] ^ Append[13] ^ Append[14] ^ Append[16] ^ Append[18] ^ Append[20] ^ Append[21] ^ Append[22] ^ Append[23] ^ Append[25] ^ Append[27] ^ Append[29] ^ Append[31] ^ Append[35] ^ Append[37]);
+    assign Detected[14] = (Poly[0] ^ Poly[4] ^ Poly[5] ^ Poly[9] ^ Poly[10] ^ Poly[11] ^ Poly[13] ^ Poly[20] ^ Poly[21] ^ Poly[23] ^ Poly[24] ^ Poly[25] ^ Poly[26] ^ Poly[27] ^ Poly[30] ^ Append[0] ^ Append[1] ^ Append[2] ^ Append[3] ^ Append[4] ^ Append[5] ^ Append[7] ^ Append[11] ^ Append[12] ^ Append[16] ^ Append[17] ^ Append[18] ^ Append[20] ^ Append[27] ^ Append[28] ^ Append[30] ^ Append[31] ^ Append[32] ^ Append[33] ^ Append[34] ^ Append[37]);
+    assign Detected[15] = (Poly[1] ^ Poly[5] ^ Poly[6] ^ Poly[10] ^ Poly[11] ^ Poly[12] ^ Poly[14] ^ Poly[21] ^ Poly[22] ^ Poly[24] ^ Poly[25] ^ Poly[26] ^ Poly[27] ^ Poly[28] ^ Poly[31] ^ Append[1] ^ Append[2] ^ Append[3] ^ Append[4] ^ Append[5] ^ Append[6] ^ Append[8] ^ Append[12] ^ Append[13] ^ Append[17] ^ Append[18] ^ Append[19] ^ Append[21] ^ Append[28] ^ Append[29] ^ Append[31] ^ Append[32] ^ Append[33] ^ Append[34] ^ Append[35] ^ Append[38]);
+    assign Detected[16] = (Poly[3] ^ Poly[4] ^ Poly[5] ^ Poly[8] ^ Poly[9] ^ Poly[14] ^ Poly[16] ^ Poly[17] ^ Poly[19] ^ Poly[20] ^ Poly[22] ^ Poly[23] ^ Poly[24] ^ Poly[25] ^ Poly[28] ^ Poly[30] ^ Poly[31] ^ Append[0] ^ Append[1] ^ Append[10] ^ Append[11] ^ Append[12] ^ Append[15] ^ Append[16] ^ Append[21] ^ Append[23] ^ Append[24] ^ Append[26] ^ Append[27] ^ Append[29] ^ Append[30] ^ Append[31] ^ Append[32] ^ Append[35] ^ Append[37] ^ Append[38]);
+    assign Detected[17] = (Poly[4] ^ Poly[5] ^ Poly[6] ^ Poly[9] ^ Poly[10] ^ Poly[15] ^ Poly[17] ^ Poly[18] ^ Poly[20] ^ Poly[21] ^ Poly[23] ^ Poly[24] ^ Poly[25] ^ Poly[26] ^ Poly[29] ^ Poly[31] ^ Append[1] ^ Append[2] ^ Append[11] ^ Append[12] ^ Append[13] ^ Append[16] ^ Append[17] ^ Append[22] ^ Append[24] ^ Append[25] ^ Append[27] ^ Append[28] ^ Append[30] ^ Append[31] ^ Append[32] ^ Append[33] ^ Append[36] ^ Append[38]);
+    assign Detected[18] = (Poly[5] ^ Poly[6] ^ Poly[7] ^ Poly[10] ^ Poly[11] ^ Poly[16] ^ Poly[18] ^ Poly[19] ^ Poly[21] ^ Poly[22] ^ Poly[24] ^ Poly[25] ^ Poly[26] ^ Poly[27] ^ Poly[30] ^ Append[2] ^ Append[3] ^ Append[12] ^ Append[13] ^ Append[14] ^ Append[17] ^ Append[18] ^ Append[23] ^ Append[25] ^ Append[26] ^ Append[28] ^ Append[29] ^ Append[31] ^ Append[32] ^ Append[33] ^ Append[34] ^ Append[37]);
+    assign Detected[19] = (Poly[6] ^ Poly[7] ^ Poly[8] ^ Poly[11] ^ Poly[12] ^ Poly[17] ^ Poly[19] ^ Poly[20] ^ Poly[22] ^ Poly[23] ^ Poly[25] ^ Poly[26] ^ Poly[27] ^ Poly[28] ^ Poly[31] ^ Append[3] ^ Append[4] ^ Append[13] ^ Append[14] ^ Append[15] ^ Append[18] ^ Append[19] ^ Append[24] ^ Append[26] ^ Append[27] ^ Append[29] ^ Append[30] ^ Append[32] ^ Append[33] ^ Append[34] ^ Append[35] ^ Append[38]);
+    assign Detected[20] = (Poly[7] ^ Poly[8] ^ Poly[9] ^ Poly[12] ^ Poly[13] ^ Poly[18] ^ Poly[20] ^ Poly[21] ^ Poly[23] ^ Poly[24] ^ Poly[26] ^ Poly[27] ^ Poly[28] ^ Poly[29] ^ Append[4] ^ Append[5] ^ Append[14] ^ Append[15] ^ Append[16] ^ Append[19] ^ Append[20] ^ Append[25] ^ Append[27] ^ Append[28] ^ Append[30] ^ Append[31] ^ Append[33] ^ Append[34] ^ Append[35] ^ Append[36]);
+    assign Detected[21] = (Poly[8] ^ Poly[9] ^ Poly[10] ^ Poly[13] ^ Poly[14] ^ Poly[19] ^ Poly[21] ^ Poly[22] ^ Poly[24] ^ Poly[25] ^ Poly[27] ^ Poly[28] ^ Poly[29] ^ Poly[30] ^ Append[5] ^ Append[6] ^ Append[15] ^ Append[16] ^ Append[17] ^ Append[20] ^ Append[21] ^ Append[26] ^ Append[28] ^ Append[29] ^ Append[31] ^ Append[32] ^ Append[34] ^ Append[35] ^ Append[36] ^ Append[37]);
+    assign Detected[22] = (Poly[2] ^ Poly[3] ^ Poly[4] ^ Poly[5] ^ Poly[6] ^ Poly[7] ^ Poly[8] ^ Poly[10] ^ Poly[12] ^ Poly[13] ^ Poly[16] ^ Poly[17] ^ Poly[19] ^ Poly[22] ^ Poly[23] ^ Poly[24] ^ Poly[25] ^ Poly[27] ^ Poly[28] ^ Append[0] ^ Append[1] ^ Append[2] ^ Append[3] ^ Append[4] ^ Append[5] ^ Append[9] ^ Append[10] ^ Append[11] ^ Append[12] ^ Append[13] ^ Append[14] ^ Append[15] ^ Append[17] ^ Append[19] ^ Append[20] ^ Append[23] ^ Append[24] ^ Append[26] ^ Append[29] ^ Append[30] ^ Append[31] ^ Append[32] ^ Append[34] ^ Append[35]);
+    assign Detected[23] = (Poly[3] ^ Poly[4] ^ Poly[5] ^ Poly[6] ^ Poly[7] ^ Poly[8] ^ Poly[9] ^ Poly[11] ^ Poly[13] ^ Poly[14] ^ Poly[17] ^ Poly[18] ^ Poly[20] ^ Poly[23] ^ Poly[24] ^ Poly[25] ^ Poly[26] ^ Poly[28] ^ Poly[29] ^ Append[1] ^ Append[2] ^ Append[3] ^ Append[4] ^ Append[5] ^ Append[6] ^ Append[10] ^ Append[11] ^ Append[12] ^ Append[13] ^ Append[14] ^ Append[15] ^ Append[16] ^ Append[18] ^ Append[20] ^ Append[21] ^ Append[24] ^ Append[25] ^ Append[27] ^ Append[30] ^ Append[31] ^ Append[32] ^ Append[33] ^ Append[35] ^ Append[36]);
+    assign Detected[24] = (Poly[2] ^ Poly[3] ^ Poly[10] ^ Poly[11] ^ Poly[13] ^ Poly[16] ^ Poly[17] ^ Poly[18] ^ Poly[20] ^ Poly[21] ^ Poly[25] ^ Poly[31] ^ Append[0] ^ Append[1] ^ Append[9] ^ Append[10] ^ Append[17] ^ Append[18] ^ Append[20] ^ Append[23] ^ Append[24] ^ Append[25] ^ Append[27] ^ Append[28] ^ Append[32] ^ Append[38]);
+    assign Detected[25] = (Poly[3] ^ Poly[4] ^ Poly[11] ^ Poly[12] ^ Poly[14] ^ Poly[17] ^ Poly[18] ^ Poly[19] ^ Poly[21] ^ Poly[22] ^ Poly[26] ^ Append[1] ^ Append[2] ^ Append[10] ^ Append[11] ^ Append[18] ^ Append[19] ^ Append[21] ^ Append[24] ^ Append[25] ^ Append[26] ^ Append[28] ^ Append[29] ^ Append[33]);
+    assign Detected[26] = (Poly[4] ^ Poly[5] ^ Poly[12] ^ Poly[13] ^ Poly[15] ^ Poly[18] ^ Poly[19] ^ Poly[20] ^ Poly[22] ^ Poly[23] ^ Poly[27] ^ Append[2] ^ Append[3] ^ Append[11] ^ Append[12] ^ Append[19] ^ Append[20] ^ Append[22] ^ Append[25] ^ Append[26] ^ Append[27] ^ Append[29] ^ Append[30] ^ Append[34]);
+    assign Detected[27] = (Poly[5] ^ Poly[6] ^ Poly[13] ^ Poly[14] ^ Poly[16] ^ Poly[19] ^ Poly[20] ^ Poly[21] ^ Poly[23] ^ Poly[24] ^ Poly[28] ^ Append[3] ^ Append[4] ^ Append[12] ^ Append[13] ^ Append[20] ^ Append[21] ^ Append[23] ^ Append[26] ^ Append[27] ^ Append[28] ^ Append[30] ^ Append[31] ^ Append[35]);
+    assign Detected[28] = (Poly[6] ^ Poly[7] ^ Poly[14] ^ Poly[15] ^ Poly[17] ^ Poly[20] ^ Poly[21] ^ Poly[22] ^ Poly[24] ^ Poly[25] ^ Poly[29] ^ Append[4] ^ Append[5] ^ Append[13] ^ Append[14] ^ Append[21] ^ Append[22] ^ Append[24] ^ Append[27] ^ Append[28] ^ Append[29] ^ Append[31] ^ Append[32] ^ Append[36]);
+    assign Detected[29] = (Poly[7] ^ Poly[8] ^ Poly[15] ^ Poly[16] ^ Poly[18] ^ Poly[21] ^ Poly[22] ^ Poly[23] ^ Poly[25] ^ Poly[26] ^ Poly[30] ^ Append[5] ^ Append[6] ^ Append[14] ^ Append[15] ^ Append[22] ^ Append[23] ^ Append[25] ^ Append[28] ^ Append[29] ^ Append[30] ^ Append[32] ^ Append[33] ^ Append[37]);
+    assign Detected[30] = (Poly[0] ^ Poly[8] ^ Poly[9] ^ Poly[16] ^ Poly[17] ^ Poly[19] ^ Poly[22] ^ Poly[23] ^ Poly[24] ^ Poly[26] ^ Poly[27] ^ Poly[31] ^ Append[6] ^ Append[7] ^ Append[15] ^ Append[16] ^ Append[23] ^ Append[24] ^ Append[26] ^ Append[29] ^ Append[30] ^ Append[31] ^ Append[33] ^ Append[34] ^ Append[38]);
+    assign Detected[31] = (Poly[1] ^ Poly[2] ^ Poly[3] ^ Poly[4] ^ Poly[5] ^ Poly[6] ^ Poly[7] ^ Poly[8] ^ Poly[10] ^ Poly[11] ^ Poly[12] ^ Poly[13] ^ Poly[14] ^ Poly[15] ^ Poly[16] ^ Poly[18] ^ Poly[19] ^ Poly[23] ^ Poly[25] ^ Poly[26] ^ Poly[28] ^ Poly[29] ^ Poly[30] ^ Poly[31] ^ Append[0] ^ Append[1] ^ Append[2] ^ Append[3] ^ Append[4] ^ Append[5] ^ Append[6] ^ Append[8] ^ Append[9] ^ Append[10] ^ Append[11] ^ Append[12] ^ Append[13] ^ Append[14] ^ Append[15] ^ Append[17] ^ Append[18] ^ Append[19] ^ Append[20] ^ Append[21] ^ Append[22] ^ Append[23] ^ Append[25] ^ Append[26] ^ Append[30] ^ Append[32] ^ Append[33] ^ Append[35] ^ Append[36] ^ Append[37] ^ Append[38]); 
+       
+  end
+endmodule 
+`endif //0:_V_
+
+//*****************************************************************************************************************************/
+
+
+module main(In,clk_m1,In_s1,
+            L12_x1,L12_x2,L12_x3,L12_x4,
+            L23_x1,L23_x2,L23_x3,L23_x4,
+            L34_x1,L34_x2,L34_x3,L34_x4,
+            CRC,Append,Polynomial,Detected);
+ 
+  input [31:0]In; 
+  input [31:0] Polynomial;
+  input clk_m1;  
+  
+  reg [7:0] before_stage_In;
+  reg [31:0] before_stage_poly;
+  
+  //stage 1 inputs & outputs
+  output [31:0] L12_x1,L12_x2,L12_x3,L12_x4; 
+
+  
+  //stage 2 inputs & outputs
+  output [31:0] L23_x1,L23_x2,L23_x3,L23_x4;
+  
+  //stage 3 inputs & outputs
+  output [31:0] L34_x1,L34_x2,L34_x3,L34_x4;
+
+  //stage 4 inputs & outputs
+  output  [31:0] CRC; //CRC
+
+  //delay 
+  //output [31:0] CRC_Delay;
+  
+  //stage 5 inputs & outputs
+    output [39:0]Append;
+
+  //stage 6 inputs & outputs
+  output  [31:0] Detected; 
+   
+  reg [1:0] MEM1[15:0]; // memory 1
+	  integer PC_MEM1;
+  initial PC_MEM1=0;
+  
+  reg [31:0] MEM2[1:0];//memory 2
+  	  integer PC_MEM2;
+  initial PC_MEM2=0;
+
+  
+  // To Avoid structural hazards ... 
+  
+  //  MEMORY  1
+
+  
+  always @(posedge clk_m1)
+    begin 
+      
+      MEM1[12]=In[1:0];
+     MEM1[13]=In[3:2];
+     MEM1[14]=In[5:4];
+      MEM1[15]=In[7:6]; // input 4
+      
+      MEM1[8]=In[9:8];
+      MEM1[9]=In[11:10];
+      MEM1[10]=In[13:12];
+      MEM1[11]=In[15:14]; // input 3 
+      
+     MEM1[4]=In[17:16];
+     MEM1[5]=In[19:18];
+     MEM1[6]=In[21:20];
+      MEM1[7]=In[23:22];//input 2
+      
+      
+      MEM1[0]=In[25:24];
+      MEM1[1]=In[27:26];
+       MEM1[2]=In[29:28];
+      MEM1[3]=In[31:30];// input 1
+            
+      
+      before_stage_In={MEM1[PC_MEM1+3],MEM1[PC_MEM1+2],MEM1[PC_MEM1+1],MEM1[PC_MEM1]};      
+       
+       #180 PC_MEM1<=PC_MEM1+4;
+      
+      
+    end   
+  
+  always @(posedge clk_m1)
+    begin
+       
+      /////polynomial ////
+      
+      MEM2[0]=Polynomial;
+      before_stage_poly = MEM2[PC_MEM2];
+    
+    end 
+
+  //*****************************************************************************************//
+  /////////////////////////////// Stage 1//////////////////////////////////////////////////////
+  //***************************************************************************************////
+  
+  //PC_MEM1 = 0
+  
+  output reg[7:0] In_s1; // Forwarding Inputs 
+  wire [31:0] poly_s1; // polynomial forwadring 
+  reg [31:0] poly_1;
+  wire [7:0]Input_s1;
+  reg [31:0]s12_x1,s12_x2,s12_x3,s12_x4;
+
+  reg flag =0;
+  
+  always @(posedge clk_m1)
+    begin
+         In_s1<=   before_stage_In;
+         poly_1 <=   before_stage_poly;
+    end
+  
+  stage_1 s1(In_s1,clk_m1, L12_x1,L12_x2,L12_x3,L12_x4,poly_1,poly_s1,Input_s1); 
+  
+  ///writing on Negative edge 
+  always @(negedge clk_m1)
+    begin
+      
+     s12_x1<=L12_x1;
+     s12_x2<=L12_x2;
+     s12_x3<=L12_x3;
+     s12_x4<=L12_x4;
+      flag<=1;
+
+    end
+  
+  
+  reg [31:0] L12_x1_After,L12_x2_After,L12_x3_After,L12_x4_After;
+    
+  //READING At positive edge after writing on negative edge //
+  always@(posedge clk_m1)
+    begin
+     if(flag==1)
+       begin 
+        L12_x1_After<=s12_x1;
+         L12_x2_After<=s12_x2;
+         L12_x3_After<=s12_x3;
+         L12_x4_After<=s12_x4;
+       end
+   end
+  
+  //***********************************************************************************************//
+  //////////////////////////////////////////stage 2//////////////////////////////////////////////////
+  //************************************************************************************************//
+  
+  wire [7:0] In_s2; // Forwarding Inputs 
+  wire [31:0] poly_s2; // polynomial forwadring 
+  reg [31:0] poly_2;
+  reg [7:0]Input_s2;
+  reg [31:0]s23_x1,s23_x2,s23_x3,s23_x4;
+
+  reg flag_2 =0;
+  
+  always @(posedge clk_m1)
+    begin
+        Input_s2<=  In_s1;
+         poly_2 <=  poly_s1;
+    end
+  stage_2 s2( L12_x1_After,L12_x2_After,L12_x3_After,L12_x4_After,L23_x1,L23_x2,L23_x3,L23_x4,clk_m1,poly_2,poly_s2,Input_s2,In_s2);
+  
+  ///writing on Negative edge 
+  always @(negedge clk_m1)
+    begin
+      
+     s23_x1<=L23_x1;
+     s23_x2<=L23_x2;
+     s23_x3<=L23_x3;
+     s23_x4<=L23_x4;
+      flag_2<=1;
+    end
+  
+  reg [31:0] L23_x1_After,L23_x2_After,L23_x3_After,L23_x4_After;
+    
+  //READING At positive edge after writing on negative edge //
+  always@(posedge clk_m1)
+    begin
+      if(flag_2==1)
+       begin 
+        L23_x1_After<=s23_x1;
+         L23_x2_After<=s23_x2;
+         L23_x3_After<=s23_x3;
+         L23_x4_After<=s23_x4;
+       end
+   end
+  
+  //***********************************************************************************************//
+  //////////////////////////////////////////stage 3////////////////// ////////////////////////////////
+  //************************************************************************************************//
+  
+  wire [7:0] In_s3; // Forwarding Inputs 
+  wire [31:0] poly_s3; // polynomial forwadring 
+  reg [31:0] poly_3;
+  reg [7:0]Input_s3;
+  reg [31:0]s34_x1,s34_x2,s34_x3,s34_x4;
+
+  reg flag_3 =0;
+
+  always @(posedge clk_m1)
+    begin
+        Input_s3<=  In_s2;
+         poly_3 <= poly_s2;
+    end
+
+  stage_3 s3( L23_x1_After,L23_x2_After,L23_x3_After,L23_x4_After,L34_x1,L34_x2,L34_x3,L34_x4,clk_m1,poly_3,poly_s3,Input_s3,In_s3);
+  
+  ///writing on Negative edge 
+  always @(negedge clk_m1)
+    begin
+      
+     s34_x1<=L34_x1;
+     s34_x2<=L34_x2;
+     s34_x3<=L34_x3;
+     s34_x4<=L34_x4;
+      flag_3 <=1 ;
+    end
+  
+  reg [31:0] L34_x1_After,L34_x2_After,L34_x3_After,L34_x4_After;
+    
+  //READING At positive edge after writing on negative edge //
+  always@(posedge clk_m1)
+    begin
+      if(flag_3==1)
+       begin 
+        L34_x1_After<=s34_x1;
+         L34_x2_After<=s34_x2;
+         L34_x3_After<=s34_x3;
+         L34_x4_After<=s34_x4;
+       end
+   end
+  
+  //***********************************************************************************************//
+  //////////////////////////////////////////stage 4//////////////////////////////////////////////////
+  //************************************************************************************************//
+  
+  wire [7:0] In_s4; // Forwarding Inputs 
+  wire [31:0] poly_s4; // polynomial forwadring 
+  reg [31:0] poly_4;
+  reg [7:0]Input_s4;
+  reg [31:0]s4_CRC;
+  
+  reg flag_4 =0;
+  
+  always @(posedge clk_m1)
+    begin
+          Input_s4<= In_s3;
+         poly_4 <=   poly_s3;
+    end
+  
+  stage_4 s4(L34_x1_After,L34_x2_After,L34_x3_After,L34_x4_After,clk_m1,CRC,poly_4,poly_s4,Input_s4,In_s4);
+  
+  ///writing on Negative edge 
+  always @(negedge clk_m1)
+    begin
+     s4_CRC<=CRC;
+      flag_4 <=1 ;
+    end
+  
+  reg [31:0] L4_CRC_After;
+    
+  //READING At positive edge after writing on negative edge //
+  always@(posedge clk_m1)
+    begin
+      
+      if(flag_4==1)
+       begin 
+        L4_CRC_After<=s4_CRC;
+       end
+   end
+  
+
+   //***********************************************************************************************//
+  //////////////////////////////////////////stage 5//////////////////////////////////////////////////
+  //************************************************************************************************//
+  
+  wire [7:0] In_s5; // Forwarding Inputs 
+  wire [31:0] poly_s5; // polynomial forwadring 
+  reg [31:0] poly_5;
+  reg [7:0]Input_s5;
+  reg [39:0]s5_Append;
+  
+  reg flag_5 =0;
+  
+  always @(posedge clk_m1)
+    begin
+         Input_s5<=  In_s4;
+         poly_5 <=   poly_4;
+    end
+
+  stage_5 s5(L4_CRC_After,Input_s5,Append,clk_m1,poly_5,poly_s5,In_s5);
+  
+  ///writing on Negative edge 
+  always @(negedge clk_m1)
+    begin
+      s5_Append<=Append;
+      flag_5 <=1 ;
+    end
+  
+  reg [39:0] L5_Append_After;
+    
+  //READING At positive edge after writing on negative edge //
+  always@(posedge clk_m1)
+    begin
+      if(flag_5==1)
+       begin 
+         L5_Append_After<=s5_Append;
+       end
+   end
+  
+  
+  
+    //***********************************************************************************************//
+  //////////////////////////////////////////stage 6//////////////////////////////////////////////////
+  //************************************************************************************************//
+  
+  wire [7:0] In_s6; // Forwarding Inputs 
+  wire [31:0] poly_s6; // polynomial forwadring 
+  reg [31:0] poly_6;
+  reg [7:0]Input_s6;
+  reg [31:0]s6_Detected;
+  
+  reg flag_6 =0;
+  
+  always @(posedge clk_m1)
+    begin
+        Input_s6<=  In_s5;
+         poly_6 <=   poly_s5;
+    end
+  
+  Detection s6(poly_6,L5_Append_After,clk_m1,Detected);
+  
+  ///writing on Negative edge 
+  always @(negedge clk_m1)
+    begin
+      s6_Detected<=Detected;
+      flag_6 <=1 ;
+    end
+  
+  reg [31:0] L6_Detected_After;
+    
+  //READING At positive edge after writing on negative edge //
+  always@(posedge clk_m1)
+    begin
+      if(flag_6==1)
+       begin 
+         L6_Detected_After<=s6_Detected;
+       end
+   end
+  
+endmodule
+
+module TB_Main;
+  
+  reg [31:0]In; 
+  wire [7:0]In_s1;
+  reg [31:0] Polynomial;
+  reg clk_m1;  
+  
+  //stage 1 inputs & outputs
+  wire [31:0] L12_x1,L12_x2,L12_x3,L12_x4; 
+
+  
+  //stage 2 inputs & outputs
+  wire  [31:0] L23_x1,L23_x2,L23_x3,L23_x4;
+  
+  //stage 3 inputs & outputs 
+  wire [31:0] L34_x1,L34_x2,L34_x3,L34_x4;
+
+  //stage 4 inputs & outputs
+  wire  [31:0] CRC; //CRC 
+
+  //delay 
+  //  wire [31:0] CRC_Delay;
+
+  //stage 5 inputs & outputs
+  wire [39:0]Append; 
+
+  //stage 6 inputs & outputs
+  wire  [31:0] Detected; 
+  
+  main m1(In,clk_m1, In_s1,
+            L12_x1,L12_x2,L12_x3,L12_x4,
+            L23_x1,L23_x2,L23_x3,L23_x4,
+            L34_x1,L34_x2,L34_x3,L34_x4,
+          CRC,Append,Polynomial,Detected); 
+  
+  initial
+    begin
+       clk_m1=0;
+      repeat(30)
+    begin 
+      #20clk_m1=1; 
+      #60clk_m1=0;
+    end
+    end
+  
+initial 
+  begin
+      #20 In =32'hFFAADD88; Polynomial = 32'h814141AB;
+ end
+  
+  initial 
+    begin 
+
+      $dumpfile("dump.vcd");  
+      $dumpvars;  
+      
+      #200 $monitor("Time = %8d ,Input = (%h) \n** Stage 1 : L1_x1 = %h , L1_x2 = %h , L1_x3 = %h , L1_x4 = %h , \n** Stage 2 : L2_x1 = %h , L2_x2 = %h , L2_x3 = %h , L2_x4 = %h , \n** Stage 3 : L3_x1 = %h , L3_x2 = %h , L3_x3 = %h , L3_x4 = %h , \n** Stage 4 : CRC   = %h  \n** stage 5 : Append = %h , \n** stage 6 : Detected = %h \n",$time,In_s1,L12_x1,L12_x2,L12_x3,L12_x4,L23_x1,L23_x2,L23_x3,L23_x4,L34_x1,L34_x2,L34_x3,L34_x4, CRC,Append,Detected);  
+      
+      #5000 $finish;  
+    end 
+ 
+endmodule
