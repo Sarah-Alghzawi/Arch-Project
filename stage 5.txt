@@ -1,0 +1,20 @@
+module stage_5 (CRC,In,Append,clk,poly,poly_s5,In_s5); //stage 5
+  
+  input clk;
+  input [31:0]CRC;
+  input [7:0]In;
+  output reg [39:0]Append;
+  input [31:0] poly;
+  output reg [31:0] poly_s5;
+  output reg [7:0] In_s5;
+
+  always @(posedge clk)
+    begin  
+      
+      Append <= {In,CRC};
+      poly_s5<=poly; //forwarding 
+      In_s5 <= In; // forwarding 
+      
+    end
+  
+endmodule

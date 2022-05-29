@@ -1,0 +1,24 @@
+module stage_2( L1_x1, L1_x2,L1_x3, L1_x4,L2_x1, L2_x2,L2_x3,L2_x4,clk,poly,poly_s2,In,In_s2);
+  
+  input clk;
+  input [31:0] L1_x1, L1_x2,L1_x3, L1_x4;
+  output[31:0] L2_x2,L2_x3,L2_x4, L2_x1;
+  input [7:0] In;
+  output reg [7:0] In_s2;
+  
+  input [31:0] poly;
+  output reg [31:0] poly_s2;
+  
+  always @(posedge clk)
+    begin 
+      poly_s2<=poly;// forwarding poly
+      In_s2<=In; // forwarding In
+
+    end
+  
+  LookUp_Taple LUT1(L1_x1,L2_x1,clk);
+  LookUp_Taple LUT2(L1_x2,L2_x2,clk);
+  LookUp_Taple LUT3(L1_x3,L2_x3,clk);
+  LookUp_Taple LUT4(L1_x4,L2_x4,clk);
+
+endmodule

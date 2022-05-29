@@ -1,0 +1,20 @@
+module stage_3(L2x1,L2x2,L2x3,L2x4,L3_x1,L3_x2,L3_x3,L3_x4,Clk,poly,poly_s3,In,In_s3);
+  input Clk;
+  input [31:0] L2x1, L2x2,L2x3, L2x4;
+  output reg[31:0] L3_x1, L3_x2,L3_x3,L3_x4;
+  input [31:0] poly;
+  output reg [31:0] poly_s3;
+  input [7:0] In;
+  output reg [7:0] In_s3;
+  
+  always @(posedge Clk)
+    begin 
+      L3_x1<=L2x1;
+      L3_x2<=L2x2;
+      L3_x3<=L2x3;
+      L3_x4<=L2x4;
+
+      poly_s3<=poly;// forwarding 
+      In_s3<=In; // forwarding In
+    end
+endmodule

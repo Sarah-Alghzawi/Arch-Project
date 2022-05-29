@@ -1,0 +1,62 @@
+module TB_Main;
+  
+  reg [31:0]In; 
+  wire [7:0]In_s1;
+  reg [31:0] Polynomial;
+  reg clk_m1;  
+  
+  //stage 1 inputs & outputs
+  wire [31:0] L12_x1,L12_x2,L12_x3,L12_x4; 
+
+  
+  //stage 2 inputs & outputs
+  wire  [31:0] L23_x1,L23_x2,L23_x3,L23_x4;
+  
+  //stage 3 inputs & outputs 
+  wire [31:0] L34_x1,L34_x2,L34_x3,L34_x4;
+
+  //stage 4 inputs & outputs
+  wire  [31:0] CRC; //CRC 
+
+  //delay 
+  //  wire [31:0] CRC_Delay;
+
+  //stage 5 inputs & outputs
+  wire [39:0]Append; 
+
+  //stage 6 inputs & outputs
+  wire  [31:0] Detected; 
+  
+  main m1(In,clk_m1, In_s1,
+            L12_x1,L12_x2,L12_x3,L12_x4,
+            L23_x1,L23_x2,L23_x3,L23_x4,
+            L34_x1,L34_x2,L34_x3,L34_x4,
+          CRC,Append,Polynomial,Detected); 
+  
+  initial
+    begin
+       clk_m1=0;
+      repeat(30)
+    begin 
+      #20clk_m1=1; 
+      #60clk_m1=0;
+    end
+    end
+  
+initial 
+  begin
+      #20 In =32'hFFAADD88; Polynomial = 32'h814141AB;
+ end
+  
+  initial 
+    begin 
+
+      $dumpfile("dump.vcd");  
+      $dumpvars;  
+      
+      #200 $monitor("Time = %8d ,Input = (%h) \n** Stage 1 : L1_x1 = %h , L1_x2 = %h , L1_x3 = %h , L1_x4 = %h , \n** Stage 2 : L2_x1 = %h , L2_x2 = %h , L2_x3 = %h , L2_x4 = %h , \n** Stage 3 : L3_x1 = %h , L3_x2 = %h , L3_x3 = %h , L3_x4 = %h , \n** Stage 4 : CRC   = %h  \n** stage 5 : Append = %h , \n** stage 6 : Detected = %h \n",$time,In_s1,L12_x1,L12_x2,L12_x3,L12_x4,L23_x1,L23_x2,L23_x3,L23_x4,L34_x1,L34_x2,L34_x3,L34_x4, CRC,Append,Detected);  
+      
+      #5000 $finish;  
+    end 
+ 
+endmodule

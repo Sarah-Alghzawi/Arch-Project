@@ -1,0 +1,21 @@
+module stage_1(input_bits,clk ,L1_x1 ,L1_x2 ,L1_x3 ,L1_x4,poly,poly_s1,In_s1);
+ 
+  input clk;
+  input [31:0] poly;
+  output reg [31:0] poly_s1;
+  output reg [31:0] L1_x1, L1_x2,L1_x3, L1_x4;
+  output reg [7:0]In_s1;
+  input [7:0] input_bits;
+  
+  always@(posedge clk)
+    begin 
+      
+      L1_x1<={30'b000000000000000000000000000000,input_bits[1:0]};
+      L1_x2<={28'b0000000000000000000000000000,input_bits[3:2],2'b00};
+      L1_x3<={26'b00000000000000000000000000,input_bits[5:4],4'b0000};
+       L1_x4<={input_bits[7:6],6'b000000};
+      
+       poly_s1<=poly;// forwarding 
+       In_s1<=input_bits;
+    end
+endmodule

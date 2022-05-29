@@ -1,0 +1,348 @@
+module main(In,clk_m1,In_s1,
+            L12_x1,L12_x2,L12_x3,L12_x4,
+            L23_x1,L23_x2,L23_x3,L23_x4,
+            L34_x1,L34_x2,L34_x3,L34_x4,
+            CRC,Append,Polynomial,Detected);
+ 
+  input [31:0]In; 
+  input [31:0] Polynomial;
+  input clk_m1;  
+  
+  reg [7:0] before_stage_In;
+  reg [31:0] before_stage_poly;
+  
+  //stage 1 inputs & outputs
+  output [31:0] L12_x1,L12_x2,L12_x3,L12_x4; 
+
+  
+  //stage 2 inputs & outputs
+  output [31:0] L23_x1,L23_x2,L23_x3,L23_x4;
+  
+  //stage 3 inputs & outputs
+  output [31:0] L34_x1,L34_x2,L34_x3,L34_x4;
+
+  //stage 4 inputs & outputs
+  output  [31:0] CRC; //CRC
+
+  //delay 
+  //output [31:0] CRC_Delay;
+  
+  //stage 5 inputs & outputs
+    output [39:0]Append;
+
+  //stage 6 inputs & outputs
+  output  [31:0] Detected; 
+   
+  reg [1:0] MEM1[15:0]; // memory 1
+	  integer PC_MEM1;
+  initial PC_MEM1=0;
+  
+  reg [31:0] MEM2[1:0];//memory 2
+  	  integer PC_MEM2;
+  initial PC_MEM2=0;
+
+  
+  // To Avoid structural hazards ... 
+  
+  //  MEMORY  1
+
+  
+  always @(posedge clk_m1)
+    begin 
+      
+      MEM1[12]=In[1:0];
+     MEM1[13]=In[3:2];
+     MEM1[14]=In[5:4];
+      MEM1[15]=In[7:6]; // input 4
+      
+      MEM1[8]=In[9:8];
+      MEM1[9]=In[11:10];
+      MEM1[10]=In[13:12];
+      MEM1[11]=In[15:14]; // input 3 
+      
+     MEM1[4]=In[17:16];
+     MEM1[5]=In[19:18];
+     MEM1[6]=In[21:20];
+      MEM1[7]=In[23:22];//input 2
+      
+      
+      MEM1[0]=In[25:24];
+      MEM1[1]=In[27:26];
+       MEM1[2]=In[29:28];
+      MEM1[3]=In[31:30];// input 1
+            
+      
+      before_stage_In={MEM1[PC_MEM1+3],MEM1[PC_MEM1+2],MEM1[PC_MEM1+1],MEM1[PC_MEM1]};      
+       
+       #180 PC_MEM1<=PC_MEM1+4;
+      
+      
+    end   
+  
+  always @(posedge clk_m1)
+    begin
+       
+      /////polynomial ////
+      
+      MEM2[0]=Polynomial;
+      before_stage_poly = MEM2[PC_MEM2];
+    
+    end 
+
+  //*****************************************************************************************//
+  /////////////////////////////// Stage 1//////////////////////////////////////////////////////
+  //***************************************************************************************////
+  
+  //PC_MEM1 = 0
+  
+  output reg[7:0] In_s1; // Forwarding Inputs 
+  wire [31:0] poly_s1; // polynomial forwadring 
+  reg [31:0] poly_1;
+  wire [7:0]Input_s1;
+  reg [31:0]s12_x1,s12_x2,s12_x3,s12_x4;
+
+  reg flag =0;
+  
+  always @(posedge clk_m1)
+    begin
+         In_s1<=   before_stage_In;
+         poly_1 <=   before_stage_poly;
+    end
+  
+  stage_1 s1(In_s1,clk_m1, L12_x1,L12_x2,L12_x3,L12_x4,poly_1,poly_s1,Input_s1); 
+  
+  ///writing on Negative edge 
+  always @(negedge clk_m1)
+    begin
+      
+     s12_x1<=L12_x1;
+     s12_x2<=L12_x2;
+     s12_x3<=L12_x3;
+     s12_x4<=L12_x4;
+      flag<=1;
+
+    end
+  
+  
+  reg [31:0] L12_x1_After,L12_x2_After,L12_x3_After,L12_x4_After;
+    
+  //READING At positive edge after writing on negative edge //
+  always@(posedge clk_m1)
+    begin
+     if(flag==1)
+       begin 
+        L12_x1_After<=s12_x1;
+         L12_x2_After<=s12_x2;
+         L12_x3_After<=s12_x3;
+         L12_x4_After<=s12_x4;
+       end
+   end
+  
+  //***********************************************************************************************//
+  //////////////////////////////////////////stage 2//////////////////////////////////////////////////
+  //************************************************************************************************//
+  
+  wire [7:0] In_s2; // Forwarding Inputs 
+  wire [31:0] poly_s2; // polynomial forwadring 
+  reg [31:0] poly_2;
+  reg [7:0]Input_s2;
+  reg [31:0]s23_x1,s23_x2,s23_x3,s23_x4;
+
+  reg flag_2 =0;
+  
+  always @(posedge clk_m1)
+    begin
+        Input_s2<=  In_s1;
+         poly_2 <=  poly_s1;
+    end
+  stage_2 s2( L12_x1_After,L12_x2_After,L12_x3_After,L12_x4_After,L23_x1,L23_x2,L23_x3,L23_x4,clk_m1,poly_2,poly_s2,Input_s2,In_s2);
+  
+  ///writing on Negative edge 
+  always @(negedge clk_m1)
+    begin
+      
+     s23_x1<=L23_x1;
+     s23_x2<=L23_x2;
+     s23_x3<=L23_x3;
+     s23_x4<=L23_x4;
+      flag_2<=1;
+    end
+  
+  reg [31:0] L23_x1_After,L23_x2_After,L23_x3_After,L23_x4_After;
+    
+  //READING At positive edge after writing on negative edge //
+  always@(posedge clk_m1)
+    begin
+      if(flag_2==1)
+       begin 
+        L23_x1_After<=s23_x1;
+         L23_x2_After<=s23_x2;
+         L23_x3_After<=s23_x3;
+         L23_x4_After<=s23_x4;
+       end
+   end
+  
+  //***********************************************************************************************//
+  //////////////////////////////////////////stage 3////////////////// ////////////////////////////////
+  //************************************************************************************************//
+  
+  wire [7:0] In_s3; // Forwarding Inputs 
+  wire [31:0] poly_s3; // polynomial forwadring 
+  reg [31:0] poly_3;
+  reg [7:0]Input_s3;
+  reg [31:0]s34_x1,s34_x2,s34_x3,s34_x4;
+
+  reg flag_3 =0;
+
+  always @(posedge clk_m1)
+    begin
+        Input_s3<=  In_s2;
+         poly_3 <= poly_s2;
+    end
+
+  stage_3 s3( L23_x1_After,L23_x2_After,L23_x3_After,L23_x4_After,L34_x1,L34_x2,L34_x3,L34_x4,clk_m1,poly_3,poly_s3,Input_s3,In_s3);
+  
+  ///writing on Negative edge 
+  always @(negedge clk_m1)
+    begin
+      
+     s34_x1<=L34_x1;
+     s34_x2<=L34_x2;
+     s34_x3<=L34_x3;
+     s34_x4<=L34_x4;
+      flag_3 <=1 ;
+    end
+  
+  reg [31:0] L34_x1_After,L34_x2_After,L34_x3_After,L34_x4_After;
+    
+  //READING At positive edge after writing on negative edge //
+  always@(posedge clk_m1)
+    begin
+      if(flag_3==1)
+       begin 
+        L34_x1_After<=s34_x1;
+         L34_x2_After<=s34_x2;
+         L34_x3_After<=s34_x3;
+         L34_x4_After<=s34_x4;
+       end
+   end
+  
+  //***********************************************************************************************//
+  //////////////////////////////////////////stage 4//////////////////////////////////////////////////
+  //************************************************************************************************//
+  
+  wire [7:0] In_s4; // Forwarding Inputs 
+  wire [31:0] poly_s4; // polynomial forwadring 
+  reg [31:0] poly_4;
+  reg [7:0]Input_s4;
+  reg [31:0]s4_CRC;
+  
+  reg flag_4 =0;
+  
+  always @(posedge clk_m1)
+    begin
+          Input_s4<= In_s3;
+         poly_4 <=   poly_s3;
+    end
+  
+  stage_4 s4(L34_x1_After,L34_x2_After,L34_x3_After,L34_x4_After,clk_m1,CRC,poly_4,poly_s4,Input_s4,In_s4);
+  
+  ///writing on Negative edge 
+  always @(negedge clk_m1)
+    begin
+     s4_CRC<=CRC;
+      flag_4 <=1 ;
+    end
+  
+  reg [31:0] L4_CRC_After;
+    
+  //READING At positive edge after writing on negative edge //
+  always@(posedge clk_m1)
+    begin
+      
+      if(flag_4==1)
+       begin 
+        L4_CRC_After<=s4_CRC;
+       end
+   end
+  
+
+   //***********************************************************************************************//
+  //////////////////////////////////////////stage 5//////////////////////////////////////////////////
+  //************************************************************************************************//
+  
+  wire [7:0] In_s5; // Forwarding Inputs 
+  wire [31:0] poly_s5; // polynomial forwadring 
+  reg [31:0] poly_5;
+  reg [7:0]Input_s5;
+  reg [39:0]s5_Append;
+  
+  reg flag_5 =0;
+  
+  always @(posedge clk_m1)
+    begin
+         Input_s5<=  In_s4;
+         poly_5 <=   poly_4;
+    end
+
+  stage_5 s5(L4_CRC_After,Input_s5,Append,clk_m1,poly_5,poly_s5,In_s5);
+  
+  ///writing on Negative edge 
+  always @(negedge clk_m1)
+    begin
+      s5_Append<=Append;
+      flag_5 <=1 ;
+    end
+  
+  reg [39:0] L5_Append_After;
+    
+  //READING At positive edge after writing on negative edge //
+  always@(posedge clk_m1)
+    begin
+      if(flag_5==1)
+       begin 
+         L5_Append_After<=s5_Append;
+       end
+   end
+  
+  
+  
+    //***********************************************************************************************//
+  //////////////////////////////////////////stage 6//////////////////////////////////////////////////
+  //************************************************************************************************//
+  
+  wire [7:0] In_s6; // Forwarding Inputs 
+  wire [31:0] poly_s6; // polynomial forwadring 
+  reg [31:0] poly_6;
+  reg [7:0]Input_s6;
+  reg [31:0]s6_Detected;
+  
+  reg flag_6 =0;
+  
+  always @(posedge clk_m1)
+    begin
+        Input_s6<=  In_s5;
+         poly_6 <=   poly_s5;
+    end
+  
+  Detection s6(poly_6,L5_Append_After,clk_m1,Detected);
+  
+  ///writing on Negative edge 
+  always @(negedge clk_m1)
+    begin
+      s6_Detected<=Detected;
+      flag_6 <=1 ;
+    end
+  
+  reg [31:0] L6_Detected_After;
+    
+  //READING At positive edge after writing on negative edge //
+  always@(posedge clk_m1)
+    begin
+      if(flag_6==1)
+       begin 
+         L6_Detected_After<=s6_Detected;
+       end
+   end
+  
+endmodule

@@ -1,0 +1,18 @@
+module stage_4(L3_x1,L3_x2,L3_x3,L3_x4,clk,CRC,poly,poly_s4,In,In_s4);
+  
+  input [31:0] L3_x1,L3_x2,L3_x3,L3_x4;
+  input clk;
+  output reg [31:0] CRC;
+  input [31:0] poly;
+  output reg [31:0] poly_s4;
+  input [7:0] In;
+  output reg [7:0] In_s4;
+  
+  always @(posedge clk)
+    begin 
+       CRC <=L3_x1^L3_x2^L3_x3^L3_x4;
+       poly_s4<=poly;// forwarding 
+       In_s4<=In; // forwarding In
+    end
+ 
+endmodule
